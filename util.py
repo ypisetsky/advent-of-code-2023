@@ -6,11 +6,11 @@ def getblankseparated(day):
     with open(f"data/day{day}.txt") as f:
         return f.read().split("\n\n")
 
-def tokenedlines(day):
+def tokenedlines(day,keep_empty=False):
     lines = getlines(day)
     ret = []
     for line in lines:
-        parts = line.strip().split(' ')
+        parts = line.strip().split(' ' if keep_empty else None)
         parsed_parts = []
         for part in parts:
             try:
