@@ -3,19 +3,15 @@ from collections import defaultdict
 
 from util import tokenedlines
 
-def freqs(hand):
-    fs = defaultdict(int)
-    for x in hand:
-        fs[x] += 1
-    jokers = fs['N']
-    del fs['N']
-    ret = sorted(fs.values(),reverse=True) + [0]
+def sortkey(hand):
+    freqs = defaultdict(int)
+    for card in hand:
+        freqs[card] += 1
+    jokers = freqs['N']
+    del freqs['N']
+    ret = sorted(freqs.values(),reverse=True) + [0] + ['N23456789TJQKA'.index(c) for c in hand]
     ret[0] += jokers
     return ret
-
-def sortkey(hand):
-    return freqs(hand) + ['N23456789TJQKA'.index(c) for c in hand]
-
 
 data = tokenedlines("7")
 
