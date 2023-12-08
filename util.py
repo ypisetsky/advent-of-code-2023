@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def getlines(day):
     with open(f"data/day{day}.txt") as f:
         return [line.strip() for line in f.readlines() if len(line) > 1]
@@ -51,3 +54,26 @@ def printgrid(points):
             else:
                 print(' ', end='')
         print("")
+
+def factorize(num):
+      i = 3
+      primefact = defaultdict(int)
+      while num > i:
+            if num % i == 0:
+                  primefact[i] += 1
+                  num /= i
+            else:
+                  i += 2
+      primefact[num] += 1
+      return primefact
+
+def lcm(nums):
+      res = {}
+      for num in nums:
+            newfact = factorize(num)
+            for prime,exp in factorize(num).items():
+                  res[prime] = max(exp, res.get(prime,0))
+      x = 1
+      for p,e in res.items():
+            x *= pow(p,e)
+      return int(x+.01)
