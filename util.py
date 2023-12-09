@@ -56,21 +56,23 @@ def printgrid(points):
         print("")
 
 def factorize(num):
-      i = 3
+      
       primefact = defaultdict(int)
-      while num > i:
+      while num % 2 == 0:
+           num /= 2
+           primefact[2] += 1
+      i = 3
+      while num >= i:
             if num % i == 0:
                   primefact[i] += 1
                   num /= i
             else:
                   i += 2
-      primefact[num] += 1
       return primefact
 
 def lcm(nums):
       res = {}
       for num in nums:
-            newfact = factorize(num)
             for prime,exp in factorize(num).items():
                   res[prime] = max(exp, res.get(prime,0))
       x = 1
