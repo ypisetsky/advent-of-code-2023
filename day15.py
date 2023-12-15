@@ -6,7 +6,7 @@
 """
 
 
-from util import *
+from util import getlines, e
 
 data = getlines("15")
 parts = data[0].split(",")
@@ -41,6 +41,6 @@ for s in parts:
             if label not in boxes[h]:
                   boxes[h].append(label)
 res = 0
-for i, lenses in enumerate(boxes):
-      res += (i + 1) * sum((j + 1) * focal_lengths[lens] for j, lens in enumerate(lenses))
+for i, lenses in e(boxes):
+      res += (i + 1) * sum((j + 1) * focal_lengths[lens] for j, lens in e(lenses))
 print(res)

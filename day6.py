@@ -1,5 +1,5 @@
 from math import ceil, floor
-from util import getlines, tokenedlines
+from util import getlines, tokenedlines, e
 
 
 data = tokenedlines("6")
@@ -17,7 +17,7 @@ def solve(n, x):
 ns = data[0][1:]
 xs = data[1][1:]
 res = 1
-for i,n in enumerate(ns):
+for i,n in e(ns):
       res *= solve(n, xs[i])
 print(res)
 

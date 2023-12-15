@@ -1,4 +1,4 @@
-from util import *
+from util import getlines, neighbors4, e
 from collections import deque
 
 def filter_inbounds(board, points):
@@ -33,8 +33,8 @@ def adjacent(board, i, j, a=None, b=None, filter=filter_inbounds):
 
 data = getlines("10")
 
-for i, row in enumerate(data):
-    for j, c in enumerate(row):
+for i, row in e(data):
+    for j, c in e(row):
         if c == 'S':
             coord = (i,j)
 

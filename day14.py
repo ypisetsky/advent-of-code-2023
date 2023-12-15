@@ -1,4 +1,4 @@
-from util import getlines
+from util import getlines, e
 
 data = getlines("14")
 #data = getlines("14s")
@@ -7,8 +7,8 @@ data = getlines("14")
 positions = []
 obstacles = set()
 
-for i, row in enumerate(data):
-    for j, c in enumerate(row):
+for i, row in e(data):
+    for j, c in e(row):
         if c == '#':
             obstacles.add((i, j))
         elif c == 'O':

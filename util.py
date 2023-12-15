@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+e = enumerate
 
 def getlines(day):
     with open(f"data/day{day}.txt") as f:

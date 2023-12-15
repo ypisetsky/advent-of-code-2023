@@ -1,5 +1,5 @@
 from collections import defaultdict
-from util import tokenedlines
+from util import tokenedlines, e
 
 data = tokenedlines("4")
 
@@ -24,7 +24,7 @@ print(res)
 
 counts = {i: 1 for i in range(len(data))}
 
-for i, line in enumerate(data):
+for i, line in e(data):
     winners,me = parseline(line)
     score = 0
     for x in me:

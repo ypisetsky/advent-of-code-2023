@@ -1,7 +1,7 @@
 
 from collections import defaultdict
 
-from util import tokenedlines
+from util import tokenedlines, e
 
 def sortkey(hand):
     freqs = defaultdict(int)
@@ -16,9 +16,9 @@ def sortkey(hand):
 data = tokenedlines("7")
 
 print(sum(
-    (i+1) * row[1] for i, row in enumerate(sorted(data, key=lambda row: sortkey(str(row[0]))))
+    (i+1) * row[1] for i, row in e(sorted(data, key=lambda row: sortkey(str(row[0]))))
 ))
 
 print(sum(
-    (i+1) * row[1] for i, row in enumerate(sorted(data, key=lambda row: sortkey(str(row[0]).replace('J', 'N'))))
+    (i+1) * row[1] for i, row in e(sorted(data, key=lambda row: sortkey(str(row[0]).replace('J', 'N'))))
 ))

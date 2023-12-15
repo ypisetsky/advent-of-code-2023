@@ -1,10 +1,10 @@
-from util import *
+from util import getlines, e
 
 data = getlines("11")
 #data = getlines("11s")
 
 addrows = set([])
-for i,row in enumerate(data):
+for i,row in e(data):
     if '#' not in row:
         addrows.add(i)
 
@@ -14,8 +14,8 @@ for j in range(len(data[0])):
         addcols.add(j)
 
 galaxies = []
-for i,row in enumerate(data):
-    for j,val in enumerate(row):
+for i,row in e(data):
+    for j,val in e(row):
         if val == '#':
             galaxies.append((i, j))
 

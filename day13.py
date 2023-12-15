@@ -1,4 +1,4 @@
-from util import getblankseparated
+from util import getblankseparated, e
 from collections import defaultdict
 
 data = getblankseparated("13")
@@ -25,8 +25,8 @@ def solve(case, targetdistance):
       tgrid = defaultdict(dict)
       rows = len(lines)
       cols = len(lines[0])
-      for i, line in enumerate(lines):
-            for j, c in enumerate(line):
+      for i, line in e(lines):
+            for j, c in e(line):
                   grid[i][j] = c
                   tgrid[j][i] = c
       rowsplit = getsplit(grid, targetdistance)

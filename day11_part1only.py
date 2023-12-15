@@ -1,4 +1,4 @@
-from util import *
+from util import getlines, e
 
 data = getlines("11")
 #data = getlines("11s")
@@ -12,7 +12,7 @@ def addcol(grid, colpos):
     ]
 
 addrows = []
-for i,row in enumerate(data):
+for i,row in e(data):
     if '#' not in row:
         addrows.append(i)
 
@@ -29,8 +29,8 @@ for c in addcols:
     data = addcol(data, c)
 
 galaxies = []
-for i,row in enumerate(data):
-    for j,val in enumerate(row):
+for i,row in e(data):
+    for j,val in e(row):
         if val == '#':
             galaxies.append((i, j))
 

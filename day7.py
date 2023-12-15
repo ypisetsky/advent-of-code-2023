@@ -1,5 +1,5 @@
 from collections import defaultdict
-from util import tokenedlines
+from util import tokenedlines, e
 
 def freqs1(hand):
     fs = defaultdict(int)
@@ -81,7 +81,7 @@ print(tuples)
 res = 0
 sortedlist = sorted(tuples)
 #sortedlist.reverse()
-for i, tup in enumerate(sortedlist):
+for i, tup in e(sortedlist):
     res += tup[2] * (i + 1)
     print(tup[2] * (i + 1), tup, (i+1))
 print(res)

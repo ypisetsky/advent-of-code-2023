@@ -1,14 +1,14 @@
-from util import getlines, neighbors8
+from util import getlines, neighbors8, e
 
 data = getlines("3")
 #data = getlines("3s")
 
         
 res = 0
-for i, row in enumerate(data):
+for i, row in e(data):
     is_part = False
     val = 0
-    for j, c in enumerate(row + '.'):
+    for j, c in e(row + '.'):
         if not c.isdigit():
             if is_part:
                 res += val
@@ -57,8 +57,8 @@ def get_ratio(i, j, data):
     return 0
 
 res = 0
-for i, row in enumerate(data):
-    for j, c in enumerate(row):
+for i, row in e(data):
+    for j, c in e(row):
         if c == '*':
             res += get_ratio(i, j, data)
 
