@@ -46,7 +46,7 @@ def walk(positions, obstacles, dir, maxi, maxj):
                 point = next
     if len(positions) != len(newpositions):
         print("MISMATCH", dir, len(positions), len(newpositions), positions, newpositions)
-    return frozenset(newpositions)
+    return newpositions
 
 def score(positions, maxi):
     return sum(maxi - p[0] for p in positions)
@@ -61,13 +61,14 @@ while True:
     for dir in range(4):
         positions = walk(positions, obstacles, dir, maxi, maxj)
     i += 1
-    if positions in memo:
-        m = memo[positions]
-        period = i - memo[positions]
+    phash = hash(frozenset(positions))
+    if phash in memo:
+        m = memo[phash]
+        period = i - memo[phash]
         offset = (1000000000) % period
         for x, slot in memo.items():
             if slot % period == offset and slot >= m:
-                print(score(positions, maxi))
+                print(score(positions, maxi), slot, i)
         break
     else:
-        memo[positions] = i
+        memo[phash] = i
