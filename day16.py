@@ -1,6 +1,5 @@
 from collections import deque
-from util import *
-
+from util import getlines
 
 data = getlines("16")
 # data = getlines("16s")
