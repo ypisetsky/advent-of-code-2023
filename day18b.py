@@ -4,11 +4,12 @@ data = tokenedlines("18")
 
 # The last hexadecimal digit encodes the direction to dig: 0 means R, 1 means D, 2 means L, and 3 means U.
 dirs = [
-      (0, 1), # right
-      (1,0), # down
-      (0, -1), # left
-      (-1, 0), # up
+    (0, 1),  # right
+    (1, 0),  # down
+    (0, -1),  # left
+    (-1, 0),  # up
 ]
+
 
 def solve(points):
     pointxy = defaultdict(list)
@@ -22,7 +23,9 @@ def solve(points):
     for x in sorted(pointxy.keys()):
         sorted_criticals = sorted(current_criticals)
         for i in range(0, len(sorted_criticals), 2):
-            score += (x - lastx - 1) * (sorted_criticals[i + 1] - sorted_criticals[i] + 1)
+            score += (x - lastx - 1) * (
+                sorted_criticals[i + 1] - sorted_criticals[i] + 1
+            )
         added_criticals = set()
         removed_criticals = set()
         for y in set(pointxy[x]):
@@ -35,7 +38,9 @@ def solve(points):
         inbefore = False
         inafter = False
         lasty = 0
-        next_criticals = current_criticals.union(added_criticals).difference(removed_criticals)
+        next_criticals = current_criticals.union(added_criticals).difference(
+            removed_criticals
+        )
         for y in all_points:
             if inbefore or inafter:
                 score += y - lasty
@@ -52,13 +57,14 @@ def solve(points):
         lastx = x
     return score
 
+
 points = [(0, 0)]
 curi = 0
 curj = 0
 
 for row in data:
     distance = row[1]
-    dir = 'RDLU'.index(row[0])
+    dir = "RDLU".index(row[0])
 
     curi += distance * dirs[dir][0]
     curj += distance * dirs[dir][1]
@@ -74,8 +80,8 @@ for row in data:
     distance = int(row[2][2:7], 16)
     dir = int(row[2][-2])
 
-    #distance = row[1]
-    #dir = 'RDLU'.index(row[0])
+    # distance = row[1]
+    # dir = 'RDLU'.index(row[0])
 
     curi += distance * dirs[dir][0]
     curj += distance * dirs[dir][1]

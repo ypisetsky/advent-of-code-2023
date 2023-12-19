@@ -1,7 +1,7 @@
 from util import getlines, e
 
 data = getlines("14")
-#data = getlines("14s")
+# data = getlines("14s")
 
 
 positions = []
@@ -9,29 +9,30 @@ obstacles = set()
 
 for i, row in e(data):
     for j, c in e(row):
-        if c == '#':
+        if c == "#":
             obstacles.add((i, j))
-        elif c == 'O':
+        elif c == "O":
             positions.append((i, j))
 
+
 def neighbor(point, maxi, maxj, dir):
-    i,j = point
+    i, j = point
     if dir == 0:
         if i == 0:
             return None
-        return i-1, j
+        return i - 1, j
     elif dir == 1:
         if j == 0:
             return None
-        return i, j-1
+        return i, j - 1
     elif dir == 2:
         if i == maxi - 1:
             return None
-        return i+1, j
+        return i + 1, j
     else:
         if j == maxj - 1:
             return None
-        return i, j+1
+        return i, j + 1
 
 
 def walk(positions, obstacles, dir, maxi, maxj):
@@ -45,11 +46,16 @@ def walk(positions, obstacles, dir, maxi, maxj):
             else:
                 point = next
     if len(positions) != len(newpositions):
-        print("MISMATCH", dir, len(positions), len(newpositions), positions, newpositions)
+        print(
+            "MISMATCH", dir, len(positions), len(newpositions), positions, newpositions
+        )
     return newpositions
+
 
 def score(positions, maxi):
     return sum(maxi - p[0] for p in positions)
+
+
 i = 0
 memo = {}
 maxi = len(data)

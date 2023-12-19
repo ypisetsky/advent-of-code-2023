@@ -1,23 +1,24 @@
 from util import getlines, e
 
 data = getlines("11")
-#data = getlines("11s")
+# data = getlines("11s")
 
 addrows = set([])
-for i,row in e(data):
-    if '#' not in row:
+for i, row in e(data):
+    if "#" not in row:
         addrows.add(i)
 
 addcols = set([])
 for j in range(len(data[0])):
-    if all(data[x][j] == '.' for x in range(len(data))):
+    if all(data[x][j] == "." for x in range(len(data))):
         addcols.add(j)
 
 galaxies = []
-for i,row in e(data):
-    for j,val in e(row):
-        if val == '#':
+for i, row in e(data):
+    for j, val in e(row):
+        if val == "#":
             galaxies.append((i, j))
+
 
 def dist(i, j, addrows, mul):
     if i > j:
@@ -30,6 +31,7 @@ def dist(i, j, addrows, mul):
             res += 1
         i += 1
     return res
+
 
 res = 0
 for a in range(len(galaxies)):

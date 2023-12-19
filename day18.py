@@ -4,16 +4,16 @@ from util import *
 data = tokenedlines("18")
 
 dirs = {
-    'R':  (0, 1), # right
-    'D':  (1,0), # down
-    'L':  (0, -1), # left
-    'U':  (-1, 0), # up
+    "R": (0, 1),  # right
+    "D": (1, 0),  # down
+    "L": (0, -1),  # left
+    "U": (-1, 0),  # up
 }
 
 curi = 10000
 curj = 10000
 
-boundary = [(curi,curj)]
+boundary = [(curi, curj)]
 
 for dir, dist, color in data:
     for i in range(dist):
@@ -23,6 +23,7 @@ for dir, dist, color in data:
 
 boundary = set(boundary)
 print(boundary)
+
 
 def floodfill(boundary, starti, startj):
     filled = set()
@@ -39,6 +40,7 @@ def floodfill(boundary, starti, startj):
             queue.append(neighbor)
             filled.add(neighbor)
     return len(filled) + len(boundary)
+
 
 print(floodfill(boundary, 10001, 10001))
 print(floodfill(boundary, 10001, 9999))

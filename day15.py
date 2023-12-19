@@ -11,17 +11,19 @@ from util import getlines, e
 data = getlines("15")
 parts = data[0].split(",")
 
+
 def step(cur, c):
-      if c == '\n':
-            return cur
-      return ((cur + ord(c)) * 17) % 256
+    if c == "\n":
+        return cur
+    return ((cur + ord(c)) * 17) % 256
 
 
 def hash(s):
-      x = 0
-      for c in s:
-            x = step(x, c)
-      return x
+    x = 0
+    for c in s:
+        x = step(x, c)
+    return x
+
 
 print(sum(hash(s) for s in parts))
 
@@ -29,18 +31,18 @@ boxes = [[] for i in range(256)]
 focal_lengths = {}
 
 for s in parts:
-      if s[-1] == '-':
-            label = s[:-1]
-            h = hash(label)
-            if label in boxes[h]:
-                  boxes[h].remove(label)
-      else:
-            label, fl = s.split("=")
-            focal_lengths[label] = int(fl)
-            h = hash(label)
-            if label not in boxes[h]:
-                  boxes[h].append(label)
+    if s[-1] == "-":
+        label = s[:-1]
+        h = hash(label)
+        if label in boxes[h]:
+            boxes[h].remove(label)
+    else:
+        label, fl = s.split("=")
+        focal_lengths[label] = int(fl)
+        h = hash(label)
+        if label not in boxes[h]:
+            boxes[h].append(label)
 res = 0
 for i, lenses in e(boxes):
-      res += (i + 1) * sum((j + 1) * focal_lengths[lens] for j, lens in e(lenses))
+    res += (i + 1) * sum((j + 1) * focal_lengths[lens] for j, lens in e(lenses))
 print(res)
