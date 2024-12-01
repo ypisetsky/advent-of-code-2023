@@ -12,7 +12,7 @@ def dfs(graph, sofar, i, j):
     neighbors = None
     if graph[i][j] == '*':
         return len(sofar) - 1
-    elif graph[i][j] != 'X':
+    elif graph[i][j] == '.':
         neighbors = neighbors4(i, j, graph)
     elif graph[i][j] == '>':
         neighbors = [(i, j + 1)]
