@@ -13,11 +13,11 @@ def getblankseparated(day):
         return f.read().split("\n\n")
 
 
-def tokenedlines(day, collapse=True):
+def tokenedlines(day, collapse=True, sep=" "):
     lines = getlines(day)
     ret = []
     for line in lines:
-        parts = [p for p in line.strip().split(" ") if not (collapse and p == "")]
+        parts = [p for p in line.strip().split(sep) if not (collapse and p == "")]
         parsed_parts = []
         for part in parts:
             try:
