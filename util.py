@@ -71,15 +71,29 @@ def neighbors_helper(max_i, max_j, candidates):
 
 def printgrid(points):
     maxX = max(p[0] for p in points)
+    minX = min(p[0] for p in points)
     maxY = max(p[1] for p in points)
-    for y in range(maxY + 1):
-        for x in range(maxX + 1):
+    minY = min(p[1] for p in points)
+    for y in range(minY, maxY + 1):
+        for x in range(minX, maxX + 1):
             if (x, y) in points:
                 print("X", end="")
             else:
                 print(" ", end="")
         print("")
 
+def printgrid2(points):
+    maxX = max(p[0] for p in points)
+    minX = min(p[0] for p in points)
+    maxY = max(p[1] for p in points)
+    minY = min(p[1] for p in points)
+    for y in range(minY, maxY + 1):
+        for x in range(minX, maxX + 1):
+            if (x, y) in points:
+                print(points[(x, y)], end="")
+            else:
+                print(" ", end="")
+        print("")
 
 def factorize(num):
     primefact = defaultdict(int)
