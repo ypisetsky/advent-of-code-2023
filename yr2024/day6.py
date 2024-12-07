@@ -58,7 +58,7 @@ def isloop():
 
 p2 = 0
 for cell in cells:
-    if cell not in obstacles:
+    if cell not in obstacles and cell != start:
         obstacles.add(cell)
         if isloop():
             p2 += 1
