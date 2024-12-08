@@ -1,5 +1,5 @@
 from math import gcd
-from util import in_range, tokenedlines, getlines
+from util import in_range, tokenedlines, getlines, Tuple
 from collections import defaultdict
 
 day = "8"
@@ -15,40 +15,34 @@ def get_antenna_groups():
                 groups[c].append((x, y))
     return groups
 
-def get_p1_antinodes(nodes, _ignored, _ignored2):
+def get_p1_antinodes(nodes, _ignored):
     antinodes = []
     for first in nodes:
         for second in nodes:
             if first != second:
-                dx = second[0] - first[0]
-                dy = second[1] - first[1]
-                
-                antinodes.append((second[0] + dx, second[1] + dy))
-                antinodes.append((first[0] - dx, first[1] - dy))
+                delta = Tuple.add(second, Tuple.negate(first))
+                antinodes.append(Tuple.add(second, delta))
+                antinodes.append(Tuple.add(first, Tuple.negate(delta)))
     return antinodes
 
-def get_p2_antinodes(nodes, max_x, max_y):
+def get_p2_antinodes(nodes, data):
     antinodes = []
     for first in nodes:
         for second in nodes:
             if first != second:
-                dx = second[0] - first[0]
-                dy = second[1] - first[1]
-                gcd = gcd2(dx, dy)
-                dx //= gcd
-                dy //= gcd
-                x = first[0]
-                y = first[1]
-                while in_range(x, y, max_x, max_y):
-                    antinodes.append((x, y))
-                    x += dx
-                    y += dy
-                x = first[0]
-                y = first[1]
-                while in_range(x, y, max_x, max_y):
-                    antinodes.append((x, y))
-                    x -= dx
-                    y -= dy
+                delta = Tuple.add(second, Tuple.negate(first))
+                gcd = gcd2(*delta)
+                delta = Tuple.idivide(delta, gcd)
+                cur = first
+                while Tuple.in_range(cur, data):
+                    antinodes.append(cur)
+                    cur = Tuple.add(cur, delta)
+                
+                cur = first
+                delta = Tuple.negate(delta)
+                while Tuple.in_range(cur, data):
+                    antinodes.append(cur)
+                    cur = Tuple.add(cur, delta)
     return antinodes
 
 def gcd2(a, b):
@@ -61,8 +55,8 @@ def gcd2(a, b):
 def get_all_antinodes(antinode_func, antenna_groups):
     all_antinodes = set()
     for group in antenna_groups:
-        for node in antinode_func(group, len(data[0]), len(data)):
-            if in_range(node[0], node[1], len(data[0]), len(data)):
+        for node in antinode_func(group, data):
+            if Tuple.in_range(node, data):
                 all_antinodes.add(node)
     return all_antinodes
 

@@ -38,6 +38,30 @@ def as_ints(arr):
 def in_range(i, j, max_i, max_j):
     return i >= 0 and j >= 0 and i < max_i and j < max_j
 
+def in_range2(tuple, grid):
+    return in_range(tuple[0], tuple[1], len(grid[0]), len(grid))
+
+class Tuple:
+    @staticmethod
+    def in_range(tuple, grid):
+        return in_range(tuple[0], tuple[1], len(grid[0]), len(grid))
+    
+    @staticmethod
+    def negate(tuple):
+        return Tuple.multiply(tuple, -1)
+    
+    @staticmethod
+    def add(t1, t2):
+        return tuple([a + b for a, b in zip(t1, t2)])
+    
+    @staticmethod
+    def multiply(tup, scalar):
+        return tuple([x * scalar for x in tup])
+    
+    @staticmethod
+    def idivide(tup, scalar):
+        return tuple([x // scalar for x in tup])
+
 
 def neighbors4(i, j, max_i, max_j=None):
     return neighbors_helper(
