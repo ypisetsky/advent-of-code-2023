@@ -33,5 +33,11 @@ def get_visitable_peaks(row, col, grid):
     return visitable
 
 
-print(sum([len(get_visitable_peaks(row, col, data)) for row in range(len(data)) for col in range(len(data[0])) if data[row][col] == '0']))
-print(sum([get_num_trails(row, col, data) for row in range(len(data)) for col in range(len(data[0])) if data[row][col] == '0']))
+print(sum([len(get_visitable_peaks(row, col, data)) 
+           for row in range(len(data)) 
+           for col in range(len(data[0]))
+           if data[row][col] == '0']))
+print(sum([get_num_trails(row, col, data)
+           for row in range(len(data)) 
+           for col in range(len(data[0])) 
+           if data[row][col] == '0']))
