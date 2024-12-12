@@ -55,6 +55,10 @@ class Tuple:
         return tuple([a + b for a, b in zip(t1, t2)])
     
     @staticmethod
+    def subtract(t1, t2):
+        return tuple([a - b for a, b in zip(t1, t2)])
+    
+    @staticmethod
     def multiply(tup, scalar):
         return tuple([x * scalar for x in tup])
     
