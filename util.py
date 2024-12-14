@@ -105,7 +105,7 @@ def printgrid(points):
     for y in range(minY, maxY + 1):
         for x in range(minX, maxX + 1):
             if (x, y) in points:
-                print("X", end="")
+                print("*", end="")
             else:
                 print(" ", end="")
         print("")
