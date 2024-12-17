@@ -22,12 +22,6 @@ def combo(a, b, c, value):
     # print("Attempting to parse combo {value}")
     return None
 
-def h(n):
-    return 
-
-
-
-
 def eval(a, b, c, ip, program):
     opcode = program[ip]
     arg = program[ip+1]
